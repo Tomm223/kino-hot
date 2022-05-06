@@ -1,0 +1,32 @@
+body {
+   background-color: #403F50;
+   font-family: 'Jura', sans-serif;
+   font-family: 'Lato', sans-serif;
+   font-family: 'Nunito', sans-serif;
+   font-family: 'PT Sans', sans-serif;
+   font-family: 'Roboto', sans-serif;
+}
+
+main {
+   padding-top: 4rem;
+}
+
+.container {
+   width: 1200px;
+   height: 100%;
+   margin: 0 auto;
+   padding: 1rem;
+}
+
+.container-filmPage {
+   max-width: 1200px;
+   height: 100%;
+   margin: 0 auto;
+   padding: 1rem;
+}
+
+@media (min-width:1440px) {
+   .container-filmPage {
+      max-width: 1440px;
+   }
+}

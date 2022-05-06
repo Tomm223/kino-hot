@@ -1,0 +1,72 @@
+.modal {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: rgba($color: #fff, $alpha: 0.5);
+}
+
+.modal-auth {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: #fff;
+   border-radius: 2rem;
+   padding: 1rem;
+   width: 500px;
+
+   &::before {
+      content: 'x';
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      top: -2rem;
+      right: -2rem;
+   }
+
+   &__title {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border-color: black;
+      padding: 1rem;
+   }
+
+   &__form {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 1rem;
+
+      &-input {
+         padding: .5rem 1rem;
+         margin-bottom: 1rem;
+         border-radius: 1rem;
+         font-size: 22px;
+      }
+
+      &-btn {
+         margin: 0 auto;
+         padding: .7rem 5rem;
+         width: max-content;
+         background-color: aqua;
+         cursor: pointer;
+         border: none;
+         border-radius: 5rem;
+         font-size: 22px;
+
+         &:hover {
+            transform: scale(0.95);
+         }
+      }
+   }
+
+   &__route {
+      text-align: center;
+
+      a {
+         text-decoration: underline
+      }
+   }
+}

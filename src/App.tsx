@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import Layout from './pages/Layout';
+import { GetTop100Films } from './Fetchs';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import FilmList from './pages/FilmsList';
+import Film from './pages/Film';
+import { ThemeProvider } from 'styled-components'
+import { useResponsive } from './hook/useResponsive';
+import { useThemeStyled } from './hook/useThemeStyled'
 
 function App() {
+
+  const theme = useThemeStyled()
+
+  useEffect(() => {
+    const funcFilms = async () => {
+      const resp = await GetTop100Films(3)
+      console.log(resp);
+
+    }
+    funcFilms()
+
+  }, [])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Layout />} >
+              <Route index element={<FilmList />} />
+              <Route path='film' element={<Film />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }
