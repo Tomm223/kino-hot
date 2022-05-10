@@ -11,18 +11,20 @@ main {
    padding-top: 4rem;
 }
 
-.container {
-   width: 1200px;
-   height: 100%;
-   margin: 0 auto;
-   padding: 1rem;
-}
+
 
 .container-filmPage {
    max-width: 1200px;
    height: 100%;
    margin: 0 auto;
-   padding: 1rem;
+   padding: 0px 1rem;
+}
+
+.position-center {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
 }
 
 @media (min-width:1440px) {

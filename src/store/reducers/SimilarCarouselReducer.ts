@@ -30,7 +30,7 @@ export function SimilarCarouselReducer(state = initState, action: ActionSimilarT
             windowSimialr: action.payload.windowSimilar
          }
       case TypesSimilarCarousel.SIMILAR_CAROUSEL_RESPONSIVE:
-         return { ...state, step: action.payload.step, windowSimilar: action.payload.windowSimilar }
+         return { ...state, stepCount: 0, step: action.payload.step, windowSimilar: action.payload.windowSimilar }
       case TypesSimilarCarousel.SIMILAR_CAROUSEL_COUNTER:
          return { ...state, stepCount: action.payload }
       case TypesSimilarCarousel.SIMILAR_CAROUSEL_STEP:

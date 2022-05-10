@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { GetFilmsSimilar } from "../../Fetchs";
+import { GetFilmsSimilar } from "../../Fetch";
 import { ActionFilmsSimilarReduc, FilmSimilarDelete, TypesFilmsSimilarReduc } from "../../types/redux/filmsSimilar";
 
 export function FilmsSimilarChange(id: number | string) {

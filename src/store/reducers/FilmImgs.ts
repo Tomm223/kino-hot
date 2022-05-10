@@ -1,9 +1,10 @@
 import React from "react";
-import { ActionFilmImgsReduc, FilmImg, TypesFilmImgsReduc } from "../../types/redux/filmImgs";
+import { FilmImg } from "../../types/fetch";
+import { ActionFilmImgsReduc, TypesFilmImgsReduc } from "../../types/redux/filmImgs";
 
 
 export interface FilmImgsInitState {
-   imgs: never[] | FilmImg[],
+   imgs: FilmImg[],
    total: number,
    totalPages: number,
    alert: null | string,

@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Film } from "../../types/fetch";
+import { FilmBase, FilmFull } from "../../types/fetch";
 import { ActionFilmReduc, TypesFilmReduc } from "../../types/redux/filmItem";
 
 export interface FilmInitState {
-   film: null | Film,
+   film: null | FilmFull,
    alert: null | string,
    loading: boolean
 }

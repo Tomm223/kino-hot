@@ -13,7 +13,7 @@ export interface ImgsCarouselChange {
       stepCount: number,
       step: number,
       windowImgs: number,
-      maxCount: number
+      maxCount: number | null
    }
 }
 export interface ImgsCaroulesResponsive {

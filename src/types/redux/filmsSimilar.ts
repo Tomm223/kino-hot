@@ -1,4 +1,4 @@
-import { Film, FilmSimilar } from "../fetch"
+import { FilmSimilar } from "../fetch"
 
 export enum TypesFilmsSimilarReduc {
    FILMS_SIMILAR_LOADING = "FILMS_ALIKE/LOADING",

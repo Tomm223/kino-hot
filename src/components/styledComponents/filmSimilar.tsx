@@ -9,7 +9,7 @@ const paddingInstan = 6
 const StyledSimilarOverflow = styled.div`
 
 margin: 0 auto;
-width: 1008px;
+width: 100%;
 height: 100%;
 overflow: hidden;
 display: flex;
@@ -23,16 +23,12 @@ interface SimilarOverflowProps {
 }
 
 export const SimilarOverFlow: FC<SimilarOverflowProps> = (props) => {
-   const window = useTypeSelector(state => state.similarCarousel.windowSimilar)
-   const step = useTypeSelector(state => state.similarCarousel.step)
-   const [height, setHeight] = useState<number>(0)
-   useEffect(() => {
-      setHeight(step * 1.5)
-   }, [step])
+
    return (
-      <StyledSimilarOverflow style={{ width: `${window}px`, height: `${height}px` }} {...props}>{props.children}</StyledSimilarOverflow>
+      <StyledSimilarOverflow {...props}>{props.children}</StyledSimilarOverflow>
    )
 }
+//width: `${window}px`, height: `${height}px`
 
 
 const StyledSimilarList = styled.ul`
@@ -47,9 +43,8 @@ interface SimilarListProps {
    children: React.ReactNode
 }
 export const SimialarList: FC<SimilarListProps> = (props) => {
-   const offset = useTypeSelector(state => state.similarCarousel.offsetRight)
    return (
-      <StyledSimilarList style={{ left: `${-offset}px` }} {...props}>
+      <StyledSimilarList {...props}>
          {props.children}
       </StyledSimilarList>
    )

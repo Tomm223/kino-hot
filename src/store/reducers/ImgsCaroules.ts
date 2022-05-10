@@ -6,7 +6,7 @@ export interface ImgsCarouselInitState {
    step: number,
    stepCount: number,
    windowImgs: number,
-   maxCount: number,
+   maxCount: number | null,
 }
 
 const initState: ImgsCarouselInitState = {
@@ -30,7 +30,7 @@ export function ImgsCarousel(state = initState, action: ActionImgscarousel) {
             maxCount: action.payload.maxCount
          }
       case TypesImgsCarousel.IMG_CAROUSEL_RESPONSIVE:
-         return { ...state, windowImgs: action.payload.windowImgs, step: action.payload.step }
+         return { ...state, stepCount: 0, windowImgs: action.payload.windowImgs, step: action.payload.step }
       case TypesImgsCarousel.IMG_CAROUSEL_COUNTER:
          return { ...state, stepCount: action.payload }
       case TypesImgsCarousel.IMG_CAROUSEL_STEP:

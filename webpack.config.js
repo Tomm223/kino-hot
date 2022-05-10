@@ -3,6 +3,7 @@ const path = require("path");
 const { CleanPlugin, Template } = require("webpack");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const isDevelopment = process.env.NODE_ENV === 'development'
+console.log(isDevelopment);
 const webpack = require('webpack')
 module.exports = {
    entry: {
@@ -36,7 +37,10 @@ module.exports = {
                {
                   loader: 'css-loader',
                   options: {
-                     module: true,
+                     modules: {
+                        mode: 'local',
+                        localIdentName: '[local]--[hash:base64:5]'
+                     },
                      sourceMap: isDevelopment
                   }
                },
@@ -59,7 +63,13 @@ module.exports = {
                   MiniCssExtractPlugin.loader,
                {
                   loader: 'css-loader',
-                  options: { module: true }
+                  options: {
+                     modules: {
+                        mode: 'local',
+                        localIdentName: '[local]--[hash:base64:5]'
+                     },
+                     sourceMap: isDevelopment
+                  }
                },
                {
                   loader: 'sass-loader',
@@ -72,7 +82,7 @@ module.exports = {
             ]
          },
          {
-            test: /\.(jsx|js)$/,
+            test: /\.(tsx|ts)$/,
             include: path.resolve(__dirname, 'src'),
             exclude: /node_modules/,
             use: [{
@@ -87,7 +97,6 @@ module.exports = {
                }
             }]
          }
-
       ]
    },
 

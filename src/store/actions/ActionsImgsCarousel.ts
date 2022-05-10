@@ -1,21 +1,22 @@
 import { ImgsCaroulesCounter, ImgsCaroulesResponsive, ImgsCaroulesStep, ImgsCarouselChange, TypesImgsCarousel } from "../../types/redux/ImgsCarousel";
 
 
-export function ActionImgsCarouselInit(stepCount: number, step: number, amountImgs: number, totalImgs: number): ImgsCarouselChange {
+export function ActionImgsCarouselInit(step: number, amountImgs: number, totalImgs: number): ImgsCarouselChange {
 
-   const initCount = -1
-   let max = 0
+   const initCount = 0
+   let max: number | null = 0
    if (totalImgs) {
-      max = totalImgs > amountImgs ? totalImgs - amountImgs + 1 : initCount
+      totalImgs = totalImgs > 20 ? 20 : totalImgs
+      max = totalImgs > amountImgs ? totalImgs - amountImgs : initCount
    }
    else {
-      max = 999
+      max = null
    }
 
    return {
       type: TypesImgsCarousel.IMG_CAROUSEL_CHANGE,
       payload: {
-         stepCount: initCount,
+         stepCount: 0,
          step: step,
          windowImgs: step * amountImgs,
          maxCount: max
@@ -34,10 +35,10 @@ export function ActionImgsCarouselResponsive(step: number, stepCount: number): I
 }
 export function ActionImgsCarouselCounter(left: boolean, count: number, maxCount: number): ImgsCaroulesCounter {
    let resp = 0
-   const initCount = -1
+
 
    if (left) {
-      if (count === initCount) {
+      if (count === 0) {
          resp = count
       }
       else {

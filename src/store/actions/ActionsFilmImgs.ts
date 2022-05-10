@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { GetFilmImgs } from "../../Fetchs";
+import { GetFilmImgs } from "../../Fetch";
 import { ActionFilmImgsReduc, ImgsDelete, PromiseImgsState, TypesFilmImgsReduc } from "../../types/redux/filmImgs";
 
 

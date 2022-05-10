@@ -1,5 +1,5 @@
 import React, { Dispatch } from "react";
-import { GetFilmId } from "../../Fetchs";
+import { GetFilmId } from "../../Fetch";
 import { ActionFilmReduc, FilmDelete, TypesFilmReduc } from "../../types/redux/filmItem";
 
 export function FilmChange(id: string) {

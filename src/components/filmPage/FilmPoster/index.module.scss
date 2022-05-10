@@ -1,0 +1,52 @@
+.Img {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 2rem;
+   height: 70vh;
+   overflow: hidden;
+
+   &_block {
+      position: relative;
+      width: 400px;
+   }
+
+   &_item {
+      width: 100%;
+   }
+
+
+   &_darken {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba($color: #000000, $alpha: .2);
+      z-index: 1;
+      cursor: pointer;
+
+      &::after {
+         content: '';
+         background: url('./img/icons8-circled-play-96.png');
+         width: 96px;
+         height: 96px;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+      }
+
+      &:hover {
+         background-color: rgba($color: #000000, $alpha: .4);
+
+      }
+   }
+}
+
+.Name {
+   text-align: center;
+   font-size: 3rem;
+   margin-bottom: 1rem;
+}

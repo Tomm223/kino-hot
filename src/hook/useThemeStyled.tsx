@@ -14,28 +14,20 @@ interface ResponsivePhone {
   maxTablet: boolean
 }
 interface themeStyled {
-  responsive: {
+  /*responsive: {
     responsiveLaptop: ResponsiveLaptop
     responsiveTablet: ResponsiveTablet
     responsivePhone: ResponsivePhone
-  }
+  }*/
 }
 
 
-
 export const useThemeStyled = () => {
-  const { minLabTop,
-    maxLabTop,
-    minTablet,
-    maxTablet,
-    minMonitor,
-    maxMonitor,
-    minFon,
-    maxFon, } = useResponsive()
+  const { mediaSizeArr } = useResponsive()
 
 
   const theme: themeStyled = {
-    responsive: {
+    /*responsive: {
       responsiveLaptop: {
         minLapTop: minLabTop,
         maxMonitor: maxMonitor
@@ -48,7 +40,7 @@ export const useThemeStyled = () => {
         minPhone: minFon,
         maxTablet: maxTablet
       },
-    }
+    }*/
 
 
   }

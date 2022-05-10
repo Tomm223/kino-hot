@@ -1,10 +1,11 @@
 import React from "react";
-import { Film } from "../../types/fetch";
+import { FilmBase, FilmSearch } from "../../types/fetch";
 import { ActionTypesFilmsList, TypesFilmsList } from "../../types/redux/filmsList";
 
 
 export interface FilmsListState {
-   films: Film[] | null,
+   keyword: string
+   films: FilmBase[] | FilmSearch[],
    pageCount: number
    page: number,
    loading: boolean,
@@ -13,7 +14,8 @@ export interface FilmsListState {
 
 
 const initState: FilmsListState = {
-   films: null,
+   keyword: '',
+   films: [],
    pageCount: 0,
    page: 1,
    loading: false,
@@ -24,7 +26,16 @@ export function FilmsListReducer(state = initState, action: ActionTypesFilmsList
       case TypesFilmsList.FILMS_LOADING:
          return { ...state, loading: true }
       case TypesFilmsList.FILMS_CHANGED:
-         return { ...state, loading: false, films: action.payload.films, pageCount: action.payload.pageCount }
+         return {
+            ...state,
+            loading: false,
+            films: action.payload.films,
+            pageCount: action.payload.pageCount,
+            page: action.payload.page,
+            keyword: action.payload.keyword
+         }
+      case TypesFilmsList.KEYWORD_CHANGE:
+         return { ...state, keyword: action.payload }
       case TypesFilmsList.PAGE_CHANGE:
          return { ...state, page: action.payload }
       case TypesFilmsList.FILMS_ALERT_OPEN:

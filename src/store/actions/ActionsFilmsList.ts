@@ -1,25 +1,29 @@
 import { type } from "os";
 import React, { Dispatch } from "react";
-import { GetTop100Films } from "../../Fetchs";
-import { ActionTypesFilmsList, TypesFilmsList } from "../../types/redux/filmsList";
+import { GetTop100Films, SearchFilms } from "../../Fetch";
+import { ActionFilmsListKeyword, ActionFilmsListPage, ActionTypesFilmsList, TypesFilmsList } from "../../types/redux/filmsList";
 
 
-export function FilmsListChange(pagaNum: number) {
+export function FilmsListChange(pageNum: number, search: string = '') {
    return async (dispatch: Dispatch<ActionTypesFilmsList>) => {
       try {
          dispatch({
             type: TypesFilmsList.FILMS_LOADING
          })
-         const resp = await GetTop100Films(pagaNum)
-         setTimeout(() => {
-            dispatch({
-               type: TypesFilmsList.FILMS_CHANGED,
-               payload: {
-                  films: resp.films,
-                  pageCount: resp.pagesCount
-               }
-            })
-         }, 1500)
+
+         const resp = search.length ? await SearchFilms(search, pageNum) : await GetTop100Films(pageNum)
+         dispatch({
+            type: TypesFilmsList.FILMS_CHANGED,
+            payload: {
+               keyword: search,
+               pageCount: resp.pagesCount,
+               films: resp.films,
+               page: pageNum
+            },
+            meta: {
+               timeout: 500
+            }
+         })
       }
       catch {
          dispatch({
@@ -36,9 +40,19 @@ export function FilmsListChange(pagaNum: number) {
    }
 }
 
-export const FilmsListPageChange = (page: number): ActionTypesFilmsList => {
+
+export const FilmsListPageChange = (page: number): ActionFilmsListPage => {
    return {
       type: TypesFilmsList.PAGE_CHANGE,
       payload: page
    }
 }
+
+
+export const FilmsListKeyWordChange = (str: string): ActionFilmsListKeyword => {
+   return {
+      type: TypesFilmsList.KEYWORD_CHANGE,
+      payload: str
+   }
+}
+

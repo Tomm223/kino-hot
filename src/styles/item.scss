@@ -1,9 +1,3 @@
-.cardFilm-list {
-   display: flex;
-   justify-content: space-around;
-   flex-wrap: wrap;
-}
-
 .cardFilm {
    width: 240px;
    height: 100%;
@@ -57,7 +51,7 @@
    }
 
    &__info {
-      margin-top: .5rem;
+      margin-top: 5px;
       width: 100%;
       padding: 0;
 
@@ -76,11 +70,9 @@
 
       &-genres {
          font-size: 14px;
+         line-height: 18px;
          color: #AD9945;
          margin-right: .5em;
       }
    }
-
-
-
 }

@@ -1,9 +1,5 @@
+import { FilmImg } from "../fetch"
 
-
-export interface FilmImg {
-   imageUrl: string,
-   previewUrl: string
-}
 
 
 export enum TypesFilmImgsReduc {

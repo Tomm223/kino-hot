@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import Layout from './pages/Layout';
-import { GetTop100Films } from './Fetchs';
+import { GetTop100Films } from './Fetch';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import FilmList from './pages/FilmsList';
+import FilmList from './pages/FilmList';
 import Film from './pages/Film';
 import { ThemeProvider } from 'styled-components'
-import { useResponsive } from './hook/useResponsive';
 import { useThemeStyled } from './hook/useThemeStyled'
 
 function App() {
@@ -14,9 +13,7 @@ function App() {
 
   useEffect(() => {
     const funcFilms = async () => {
-      const resp = await GetTop100Films(3)
-      console.log(resp);
-
+      const resp = await GetTop100Films()
     }
     funcFilms()
 

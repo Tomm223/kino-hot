@@ -1,0 +1,17 @@
+.carousel-list {
+   position: absolute;
+   top: 0;
+   display: flex;
+   transition: right 0.6s;
+   width: 100%;
+}
+
+@media screen and (max-width:768px) {
+   .carousel-list {
+      overflow-x: scroll;
+   }
+}
+
+body {
+   overflow-x: hidden;
+}

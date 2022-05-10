@@ -1,0 +1,32 @@
+@import '../../../styles/variable.scss';
+
+.description {
+   margin: 0 auto;
+   display: flex;
+   flex-wrap: wrap;
+   margin-bottom: 1rem;
+   width: 100%;
+
+   &_item {
+      text-align: center;
+      font-size: 1.5rem;
+   }
+}
+
+.film__info {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   padding-bottom: 2rem;
+   color: $filmInfo;
+
+   &Item {
+      display: flex;
+      margin-right: 1rem;
+   }
+
+   &_P {
+      margin: 0 .3rem;
+   }
+
+}

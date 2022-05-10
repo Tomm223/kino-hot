@@ -1,0 +1,25 @@
+@import '../../styles/variable.scss';
+
+
+.li {
+   align-items: center;
+}
+
+.form {
+   cursor: pointer;
+   width: 100%;
+   height: 100%;
+   padding: 25px 5px;
+   margin: 0;
+}
+
+.input {
+   width: 50px;
+   font-family: $fontFamily;
+   outline: none;
+   cursor: pointer;
+
+   &::placeholder {
+      color: $placeholderColor;
+   }
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Film, FilmSimilar } from "../../types/fetch";
+import { FilmBase, FilmSimilar } from "../../types/fetch";
 import { ActionFilmsSimilarReduc, TypesFilmsSimilarReduc } from "../../types/redux/filmsSimilar";
 
 interface FilmsAlikeInitState {

@@ -1,5 +1,5 @@
 
-import { Film } from "../fetch"
+import { FilmBase, FilmFull } from "../fetch"
 
 
 export enum TypesFilmReduc {
@@ -12,7 +12,7 @@ export enum TypesFilmReduc {
 export type ActionFilmReduc = FilmChange | FilmDelete | FilmLoading | FilmErrOpen | FilmErrClose
 export interface FilmChange {
    type: TypesFilmReduc.FILM_CHANGE,
-   payload: Film
+   payload: FilmFull
 }
 export interface FilmDelete {
    type: TypesFilmReduc.FILM_CHANGE,

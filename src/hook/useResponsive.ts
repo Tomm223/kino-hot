@@ -1,104 +1,81 @@
+
 import React from "react";
 import { useMediaQuery } from 'react-responsive'
 
 export function useResponsive() {
+   const minErr = useMediaQuery({ query: '(min-width: 999999px)' })
+   const minBigMonitor = useMediaQuery({ query: '(min-width: 1920px)' })
+   const maxBigMonitor = useMediaQuery({ query: '(max-width: 1920px)' })
+   const minMonitor = useMediaQuery({ query: '(min-width: 1440px)' })
+   const maxMonitor = useMediaQuery({ query: '(max-width: 1440px)' })
    const minLabTop = useMediaQuery({ query: '(min-width: 1024px)' })
    const maxLabTop = useMediaQuery({ query: '(max-width: 1024px)' })
    const minTablet = useMediaQuery({ query: '(min-width: 768px)' })
    const maxTablet = useMediaQuery({ query: '(max-width: 768px)' })
-   const minMonitor = useMediaQuery({ query: '(min-width: 1440px)' })
-   const maxMonitor = useMediaQuery({ query: '(max-width: 1440px)' })
-   const minFon = useMediaQuery({ query: '(min-width: 425px)' })
+   const minFon = useMediaQuery({ query: '(min-width: 125px)' })
    const maxFon = useMediaQuery({ query: '(max-width: 425px)' })
-
+   const minPX = useMediaQuery({ query: '(max-width: 20px)' })
    function buildWidowImgsWidth(): number {
-      let amountImgs = 0
-      if (minLabTop && maxMonitor) {
-         amountImgs = 7
-      }
-      else if (minTablet && maxLabTop) {
-         amountImgs = 5
-      }
-      else if (minFon && maxTablet) {
-         amountImgs = 3
-      }
-      else if (minMonitor) {
-         amountImgs = 8
-      }
+      const arr = [
+         { query: minPX, response: 1 }, { query: minFon, response: 3 }, { query: minTablet, response: 4 },
+         { query: minLabTop, response: 5 }, { query: minMonitor, response: 6 },
+         { query: minBigMonitor, response: 7 }, { query: minErr, response: 0 },]
 
-      return amountImgs
+      const amount = arr.find((item, i) => !arr[i + 1].query && item.query)
+
+      return amount?.response || 0
    }
    function buildStepImgsWidth(): number {
-      let step = 0
-      if (minLabTop && maxMonitor) {
-         step = 156
-      }
-      else if (minTablet && maxLabTop) {
-         step = 136
-      }
-      else if (minFon && maxTablet) {
-         step = 146
-      }
-      else if (minMonitor) {
-         step = 156
-      }
+      const arr = [
+         { query: minPX, response: 100 }, { query: minFon, response: 146 }, { query: minTablet, response: 126 },
+         { query: minLabTop, response: 146 }, { query: minMonitor, response: 176 },
+         { query: minBigMonitor, response: 206 }, { query: minErr, response: 0 }]
 
-      return step
+      let step = arr.find((item, i) => !arr[i + 1].query && item.query)
+
+      return step?.response || 0
    }
    function buildSimalarWidowWidth(): number {
-      let amountImgs = 0
-      if (minLabTop && maxMonitor) {
-         amountImgs = 5
-      }
-      else if (minTablet && maxLabTop) {
-         amountImgs = 4
-      }
-      else if (minFon && maxTablet) {
-         amountImgs = 4
-      }
-      else if (minMonitor) {
-         amountImgs = 5
-      }
 
-      return amountImgs
+      const arr = [
+         { query: minPX, response: 1 }, { query: minFon, response: 3 }, { query: minTablet, response: 3 },
+         { query: minLabTop, response: 5 }, { query: minMonitor, response: 6 },
+         { query: minBigMonitor, response: 6 }, { query: minErr, response: 0 },]
+
+      const amount = arr.find((item, i) => !arr[i + 1].query && item.query)
+
+      return amount?.response || 0
    }
    function buildSimalarStepWidth(): number {
-      let step = 0
-      if (minLabTop && maxMonitor) {
-         step = 200
-      }
-      else if (minTablet && maxLabTop) {
-         step = 200
-      }
-      else if (minFon && maxTablet) {
-         step = 120
-      }
-      else if (minMonitor) {
-         step = 240
-      }
 
-      return step
+      const arr = [
+         { query: minPX, response: 100 }, { query: minFon, response: 150 }, { query: minTablet, response: 180 },
+         { query: minLabTop, response: 180 }, { query: minMonitor, response: 240 },
+         { query: minBigMonitor, response: 240 }, { query: minErr, response: 0 }]
+
+      let step = arr.find((item, i) => !arr[i + 1].query && item.query)
+
+      return step?.response || 0
    }
 
 
 
 
    return {
-      minLabTop,
-      maxLabTop,
-      minTablet,
-      maxTablet,
-      minMonitor,
-      maxMonitor,
-      minFon,
-      maxFon,
+      mediaSizeArr: [
+         maxBigMonitor,
+         maxLabTop,
+         maxTablet,
+         maxMonitor,
+         maxFon,
+      ],
       ImgCarousel_Func: {
-         buildWidowImgsWidth,
-         buildStepImgsWidth
+         buildWidowWidth: buildWidowImgsWidth,
+         buildStepWidth: buildStepImgsWidth
       },
       SimilarCarousel_Func: {
-         buildSimalarWidowWidth,
-         buildSimalarStepWidth
+         buildWidowWidth: buildSimalarWidowWidth,
+         buildStepWidth: buildSimalarStepWidth
       }
    }
 }
