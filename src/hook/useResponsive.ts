@@ -58,6 +58,17 @@ export function useResponsive() {
       return step?.response || 0
    }
 
+   function buildPaginationPagesSide(): number {
+      const arr = [
+         { query: minPX, response: 3 }, { query: minFon, response: 3 }, { query: minTablet, response: 3 },
+         { query: minLabTop, response: 4 }, { query: minMonitor, response: 5 },
+         { query: minBigMonitor, response: 5 }, { query: minErr, response: 0 },]
+
+      const amount = arr.find((item, i) => !arr[i + 1].query && item.query)
+
+      return amount?.response || 0
+   }
+
 
 
 
@@ -76,6 +87,9 @@ export function useResponsive() {
       SimilarCarousel_Func: {
          buildWidowWidth: buildSimalarWidowWidth,
          buildStepWidth: buildSimalarStepWidth
+      },
+      PaginationResponsive_Func: {
+         buildSidePages: buildPaginationPagesSide
       }
    }
 }

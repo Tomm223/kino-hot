@@ -50,9 +50,13 @@
       flex-direction: column;
       padding-bottom: 1rem;
 
-      &_input {
-         padding: .5rem 1rem;
+      &_block {
          margin-bottom: 1rem;
+      }
+
+      &_input {
+         width: 100%;
+         padding: .5rem 1rem;
          border-radius: 1rem;
          font-size: 18px;
          border: 2px solid #8E8A7E;
@@ -62,6 +66,13 @@
             border: 2px solid aqua;
             outline: none;
          }
+      }
+
+      &_error {
+         margin: 0;
+         padding-top: 5px;
+         text-align: center;
+         color: red;
       }
 
       &_btn {

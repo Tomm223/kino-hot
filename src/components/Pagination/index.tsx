@@ -1,5 +1,6 @@
 
 import React, { FC, useEffect, useState } from "react";
+import { useResponsive } from "../../hook/useResponsive";
 
 
 import style from './index.module.scss'
@@ -14,21 +15,28 @@ interface PaginationProps {
 
 const Pagination: FC<PaginationProps> = ({ page, pageCount, setSearchParams }) => {
    const [pagesArray, setPagesArray] = useState<number[]>([])
-
+   const { PaginationResponsive_Func, mediaSizeArr } = useResponsive()
+   const [pageSide, setPageSide] = useState(3)
+   const [pagesAmount, setPageAmount] = useState(7)
    useEffect(() => {
-      if (page >= 7 && pagesArray.length) {
+      const side = PaginationResponsive_Func.buildSidePages()
+      setPageAmount(side * 2 + 1)
+      setPageSide(side)
+   }, [...mediaSizeArr])
+   useEffect(() => {
+      if (page > pagesArray.length / 2 || page > pageSide && pagesArray.length) {
          const arr = []
-         for (var i = page - 4; i <= page + 4; i++) {
+         for (var i = page - pageSide; i <= page + pageSide; i++) {
             if (i < pageCount) {
                arr.push(i)
             }
          }
          setPagesArray(arr)
       }
-      else if (page < 7) {
+      else if (page <= pagesArray.length / 2) {
          const arr = []
          for (var i = 1; i <= pageCount; i++) {
-            if (i <= 10) {
+            if (i <= pagesAmount) { // ЧТО ЭТО ЗА ДЕСЯТКА ???
                arr.push(i)
             }
          }

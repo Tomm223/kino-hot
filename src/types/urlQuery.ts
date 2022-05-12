@@ -9,3 +9,4 @@ export enum LocalStorageTypes {
    COLLECTION = 'collection',
    SEARCH = 'search'
 }
+
