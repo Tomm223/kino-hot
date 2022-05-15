@@ -79,6 +79,3 @@ export async function SearchFilms(str: string, page: number = 1): Promise<Promis
 
 
 
-/*
-
-*/

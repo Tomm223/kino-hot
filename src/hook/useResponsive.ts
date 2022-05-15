@@ -15,6 +15,7 @@ export function useResponsive() {
    const minFon = useMediaQuery({ query: '(min-width: 125px)' })
    const maxFon = useMediaQuery({ query: '(max-width: 425px)' })
    const minPX = useMediaQuery({ query: '(max-width: 20px)' })
+   //Filmimg
    function buildWidowImgsWidth(): number {
       const arr = [
          { query: minPX, response: 1 }, { query: minFon, response: 3 }, { query: minTablet, response: 4 },
@@ -35,6 +36,7 @@ export function useResponsive() {
 
       return step?.response || 0
    }
+   //FilmimSilar
    function buildSimalarWidowWidth(): number {
 
       const arr = [
@@ -57,12 +59,23 @@ export function useResponsive() {
 
       return step?.response || 0
    }
-
+   //PAgination
    function buildPaginationPagesSide(): number {
       const arr = [
          { query: minPX, response: 3 }, { query: minFon, response: 3 }, { query: minTablet, response: 3 },
          { query: minLabTop, response: 4 }, { query: minMonitor, response: 5 },
          { query: minBigMonitor, response: 5 }, { query: minErr, response: 0 },]
+
+      const amount = arr.find((item, i) => !arr[i + 1].query && item.query)
+
+      return amount?.response || 0
+   }
+   //Gallery
+   function buildGalleryStepWidth(): number {
+      const arr = [
+         { query: minPX, response: 300 }, { query: minFon, response: 500 }, { query: minTablet, response: 800 },
+         { query: minLabTop, response: 800 }, { query: minMonitor, response: 1000 },
+         { query: minBigMonitor, response: 1500 }, { query: minErr, response: 0 },]
 
       const amount = arr.find((item, i) => !arr[i + 1].query && item.query)
 
@@ -90,6 +103,9 @@ export function useResponsive() {
       },
       PaginationResponsive_Func: {
          buildSidePages: buildPaginationPagesSide
+      },
+      GalleryResponsive_Func: {
+         buildStep: buildGalleryStepWidth
       }
    }
 }

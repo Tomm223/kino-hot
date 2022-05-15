@@ -2,6 +2,8 @@ import React, { Dispatch } from "react";
 import { GetFilmId } from "../../Fetch";
 import { ActionFilmReduc, FilmDelete, TypesFilmReduc } from "../../types/redux/filmItem";
 
+
+
 export function FilmChange(id: string) {
    return async (dispatch: Dispatch<ActionFilmReduc>) => {
       dispatch({
@@ -9,8 +11,6 @@ export function FilmChange(id: string) {
       })
       try {
          const resp = await GetFilmId(id)
-         console.log(resp);
-
          setTimeout(() => {
             dispatch({
                type: TypesFilmReduc.FILM_CHANGE,
@@ -19,6 +19,8 @@ export function FilmChange(id: string) {
          }, 500);
       }
       catch {
+         console.log("TUUU");
+
          dispatch({
             type: TypesFilmReduc.FILM_ERROR_OPEN,
             payload: "в загрузка данных о фильме произошла ошибка"

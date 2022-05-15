@@ -21,7 +21,8 @@ const FilmItem: FC<FilmsItemProps> = ({ film, sizeImg, sizeBlock }) => {
    const navigateParams = useNavigateParams()
 
 
-   function handle() {
+   function handle(e: React.MouseEvent) {
+
       navigateParams('/film', { id: film.filmId })
    }
 

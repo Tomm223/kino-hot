@@ -3,11 +3,6 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/reset.css'
 import './styles/global.scss'
-import './styles/index.scss'
-import './styles/header.scss'
-import './styles/auth.scss'
-import './styles/item.scss'
-import './styles/film.scss'
 
 import { Provider } from 'react-redux'
 import { store } from './store';

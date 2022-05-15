@@ -37,7 +37,6 @@ export function FilmVideoChange(id: number) {
 }
 export const FilmVideoError = (str: string) => {
    return (dispatch: Dispatch<ActionTypeFilmVideo>) => {
-      console.log("TREU");
       dispatch({
          type: TypesFilmVideo.FILM_VIDEO_ERROR_OPEN,
          payload: str

@@ -5,13 +5,15 @@ const styles = style as any
 
 interface ImgsItemProps {
    width: number
-   src: string
+   src: string,
+   onClick: (stepID: number) => void,
+   posArr: number
 }
 
-const FilmImgItem: FC<ImgsItemProps> = ({ width, src }) => {
+const FilmImgItem: FC<ImgsItemProps> = ({ width, src, onClick, posArr }) => {
 
    return (
-      <div className={styles.div}>
+      <div onClick={() => onClick(posArr)} className={styles.div}>
          <img style={{ width: `${width}px`, height: `${width / 1.78}px` }} src={src} />
       </div>
    )

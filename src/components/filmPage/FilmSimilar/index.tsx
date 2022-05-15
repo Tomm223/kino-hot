@@ -5,6 +5,7 @@ import { useResponsive } from "../../../hook/useResponsive"
 import { useTypeSelector } from "../../../hook/useTypeSelector"
 import Carousel from "../../Carousels"
 import FilmItem from "../../FilmItem"
+import { AlertError } from "../../UI/Alert"
 
 import style from './index.module.scss'
 const styles = style as any
@@ -12,6 +13,7 @@ const styles = style as any
 
 const FilmSimilar: FC = () => {
    const similar = useTypeSelector(state => state.filmsSimilar.films)
+   const alert = useTypeSelector(state => state.filmsSimilar.alert)
    const total = useTypeSelector(state => state.filmsSimilar.total)
    const step = useTypeSelector(state => state.similarCarousel.step)
    const maxCount = useTypeSelector(state => state.similarCarousel.maxCount)
@@ -29,6 +31,7 @@ const FilmSimilar: FC = () => {
 
    return (
       <>
+         <AlertError alert={alert} />
          {maxCount ? <h3 className={styles.titleSimilar}>Смотрите также:</h3> : <></>}
          <Carousel
             total={total}

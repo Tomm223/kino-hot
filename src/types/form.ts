@@ -9,6 +9,15 @@ export interface initStateFormConstructor {
    city?: string
    street?: string
 }
+export interface StateFormConstructorLogin {
+   email: string
+   password: string
+}
+export interface StateFormConstructorRegistration {
+   name: string
+   email: string
+   password: string
+}
 export interface ClassesFormConstructor {
    form: string,
    blockInput: string,

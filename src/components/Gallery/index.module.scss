@@ -1,0 +1,38 @@
+.block {
+   position: relative;
+
+}
+
+.back {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background-color: rgba($color: #000000, $alpha: .5);
+   z-index: 99911;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+
+.list {
+   position: absolute;
+   top: 0;
+   display: flex;
+
+}
+
+.closeDiv {
+   position: absolute;
+   top: 0rem;
+   right: -3rem;
+   width: 2rem;
+   cursor: pointer;
+}
+
+.closeImg {
+   width: 100%;
+   height: 100%;
+}

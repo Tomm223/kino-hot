@@ -7,7 +7,7 @@ interface AlertErrorProps {
 export const AlertError: FC<AlertErrorProps> = ({ alert }) => {
    if (alert) {
       return (
-         <div className="alert alert-danger" role="alert">
+         <div style={{ zIndex: '5555', margin: '0 1rem' }} className="alert alert-danger" role="alert">
             {alert}
          </div>
       )

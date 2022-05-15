@@ -28,20 +28,21 @@ const FilmList: FC = () => {
    const searchParams = searchParamHook.get('search')
    const collectionParams = searchParamHook.get('collection')
    const pageParams = searchParamHook.get('page')
-   //search Listener
+   //Listener
    useEffect(() => {
       if (searchParams) {
          const num = pageParams ? JSON.parse(pageParams) : 1
          FilmsListChange(num, searchParams)
       }
-   }, [searchParams, pageParams])
-   //top100 listener
-   useEffect(() => {
       if (collectionParams === URLQuery.TOP100_FILMS) {
          const num = pageParams ? JSON.parse(pageParams) : 1
          FilmsListChange(num)
       }
-   }, [collectionParams, pageParams])
+      else if (!collectionParams && !searchParams) {
+         // дефольтый запрос фильмов
+         setSearchParamHook({ collection: `${URLQuery.TOP100_FILMS}`, page: `1` })
+      }
+   }, [searchParams, collectionParams, pageParams])
 
    //pagination func for change page in searchParams
    const navigationHook = useNavigateParams()
@@ -56,7 +57,7 @@ const FilmList: FC = () => {
 
    }
 
-   // array for placeholder-Loading
+   // array for placeholder-Loading film-list-items
    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
    // to top  для просмотра страницы с самого начала

@@ -35,8 +35,12 @@ const Validateschema = {
 
 }
 
-export const validationYup = yup.object().shape({
+export const validationYupRegistration = yup.object().shape({
    name: yup.string().checkDefMethod(),
+   email: yup.string().email().required('Обязательно к заполнению'),
+   password: yup.string().checkDefMethod().matches(passwordCheck, 'Пароль должен содержать: cтрочные и прописные латинские буквы, цифры, спецсимволы. Минимум 8 символов'),
+})
+export const validationYupLogin = yup.object().shape({
    email: yup.string().email().required('Обязательно к заполнению'),
    password: yup.string().checkDefMethod().matches(passwordCheck, 'Пароль должен содержать: cтрочные и прописные латинские буквы, цифры, спецсимволы. Минимум 8 символов'),
 })

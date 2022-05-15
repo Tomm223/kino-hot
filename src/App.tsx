@@ -6,8 +6,22 @@ import FilmList from './pages/FilmList';
 import Film from './pages/Film';
 import { ThemeProvider } from 'styled-components'
 import { useThemeStyled } from './hook/useThemeStyled'
+import AuthHoc from './hoc/AuthHoc';
+import { LocalStorageTypes } from './types/urlQuery';
+import { useAction } from './hook/useAction';
+import { useTypeSelector } from './hook/useTypeSelector';
 
 function App() {
+
+  // user AUTH не знаю куда это положить и как решить проблему иначе
+  const { ActionUserChange } = useAction()
+  //const user = useTypeSelector(state => state.user.user)
+  useEffect(() => {
+    const userGet = sessionStorage.getItem(LocalStorageTypes.USER)
+    if (userGet) {
+      ActionUserChange(JSON.parse(userGet))
+    }
+  }, [])
 
   const theme = useThemeStyled()
 
@@ -25,7 +39,11 @@ function App() {
           <Routes>
             <Route path='/' element={<Layout />} >
               <Route index element={<FilmList />} />
-              <Route path='film' element={<Film />} />
+              <Route path='film' element={
+                <AuthHoc>
+                  <Film />
+                </AuthHoc>
+              } />
             </Route>
           </Routes>
         </BrowserRouter>

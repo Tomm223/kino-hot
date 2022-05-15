@@ -5,8 +5,10 @@ import { FilmReducer } from "./reducers/FilmReducer"
 import { FilmsListReducer } from "./reducers/FilmsListReducer"
 import { FilmSimilarReducer } from "./reducers/FilmsSimilarReducer"
 import { FilmVideoReducer } from "./reducers/FilmVideo"
+import { GalleryCarousel } from "./reducers/GalleryCarousel"
 import { ImgsCarousel } from "./reducers/ImgsCaroules"
 import { SimilarCarouselReducer } from "./reducers/SimilarCarouselReducer"
+import { userReducer } from "./reducers/UserReducer"
 
 
 export const rootReducer = combineReducers({
@@ -16,7 +18,9 @@ export const rootReducer = combineReducers({
    filmsSimilar: FilmSimilarReducer,
    imgsCarousel: ImgsCarousel,
    similarCarousel: SimilarCarouselReducer,
-   filmVideo: FilmVideoReducer
+   filmVideo: FilmVideoReducer,
+   gallery: GalleryCarousel,
+   user: userReducer,
 })
 
 export default rootReducer

@@ -6,6 +6,8 @@ import * as FilmsSimilarAct from "./ActionsFilmsSimilar"
 import * as ImgsCarousel from "./ActionsImgsCarousel"
 import * as SimilarCarousel from "./ActionsSimilarCarousel"
 import * as FilmVideo from "./ActionsFilmVideo"
+import * as User from "./ActionsUser"
+import * as Gallery from './ActionsGallery'
 
 export default {
    ...FilmsListAct,
@@ -14,5 +16,7 @@ export default {
    ...FilmsSimilarAct,
    ...ImgsCarousel,
    ...SimilarCarousel,
-   ...FilmVideo
+   ...FilmVideo,
+   ...User,
+   ...Gallery,
 }

@@ -19,6 +19,7 @@ background-color: rgba(#000000, 0.4);
 filter: blur(20px); 
 z-index:-1;
 width:80vw;
+max-width:1200px;
 height:100vh;
 
 `

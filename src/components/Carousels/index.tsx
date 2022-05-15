@@ -18,10 +18,10 @@ interface FilmsSimilarProps {
       window: number
    }
    action: {
-      init: (step: number, amountImgs: number, total: number) => SimilarCarouselInit | ImgsCarouselChange,
-      steped: (count: number, step: number) => SimilarCarouselStep | ImgsCaroulesStep,
-      count: (left: boolean, count: number, maxCount: number) => SimilarCarouselCounter | ImgsCaroulesCounter,
-      size: (step: number, stepCount: number) => SimilarCarouselResponsive | ImgsCaroulesResponsive
+      init: (step: number, amount: number, total: number) => any//SimilarCarouselInit | ImgsCarouselChange,
+      steped: (count: number, step: number) => any//SimilarCarouselStep | ImgsCaroulesStep,
+      count: (left: boolean, count: number, maxCount: number) => any//SimilarCarouselCounter | ImgsCaroulesCounter,
+      size: (step: number, stepCount: number) => any//SimilarCarouselResponsive | ImgsCaroulesResponsive
    },
    sizingAdaptive: {
       buildWindowWidth: () => number

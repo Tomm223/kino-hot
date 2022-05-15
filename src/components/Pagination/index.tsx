@@ -23,6 +23,7 @@ const Pagination: FC<PaginationProps> = ({ page, pageCount, setSearchParams }) =
       setPageAmount(side * 2 + 1)
       setPageSide(side)
    }, [...mediaSizeArr])
+
    useEffect(() => {
       if (page > pagesArray.length / 2 || page > pageSide && pagesArray.length) {
          const arr = []
@@ -36,16 +37,13 @@ const Pagination: FC<PaginationProps> = ({ page, pageCount, setSearchParams }) =
       else if (page <= pagesArray.length / 2) {
          const arr = []
          for (var i = 1; i <= pageCount; i++) {
-            if (i <= pagesAmount) { // ЧТО ЭТО ЗА ДЕСЯТКА ???
+            if (i <= pagesAmount) {
                arr.push(i)
             }
          }
          setPagesArray(arr)
       }
    }, [page, pageCount])
-
-
-
 
 
    return (
@@ -114,34 +112,3 @@ const Pagination: FC<PaginationProps> = ({ page, pageCount, setSearchParams }) =
 export default Pagination
 
 
-/*
-
- else if (i === 9) {
-                     return (
-                        <>
-                           <li key={item}
-                              className={"page-item"}>
-                              <p className="page-link"
-                                 style={{ padding: ' 15px 20px' }}
-                              >...</p>
-                           </li>
-                           <li key={pageCount}
-                              style={{ cursor: 'pointer' }}
-                              onClick={() => setSearchParams(pageCount)}
-                              className={"page-item"}>
-                              <p className="page-link"
-                                 style={{ padding: ' 15px 20px' }}
-                              >{pagesArray.length + 1}</p>
-                           </li>
-                           <li key={`поиск${Date.now()}`}
-                              className={`${styles.li} page-item`}>
-                              <form className={`${styles.form} page-link`}
-                                 onSubmit={() => alert('СДЕЛАТЬ ПОИСК')}>
-                                 <input className={styles.input} type="text" />
-                              </form>
-                           </li>
-                        </>
-                     )
-                  }
-
-*/

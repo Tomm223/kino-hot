@@ -32,7 +32,7 @@ export function FilmImgsReducer(state = initState, action: ActionFilmImgsReduc) 
       case TypesFilmImgsReduc.IMGS_LOADING:
          return { ...state, loading: true }
       case TypesFilmImgsReduc.IMGS_ERROR_OPEN:
-         return { ...state, alert: action.payload }
+         return { ...state, loading: false, alert: action.payload }
       case TypesFilmImgsReduc.IMGS_ERROR_CLOSE:
          return { ...state, alert: null }
       default:

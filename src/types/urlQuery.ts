@@ -7,6 +7,9 @@ export enum URLQuery {
 
 export enum LocalStorageTypes {
    COLLECTION = 'collection',
-   SEARCH = 'search'
+   SEARCH = 'search',
+   USER = 'user'
 }
+
+
 

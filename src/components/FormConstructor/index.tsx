@@ -1,15 +1,18 @@
 import React, { FC, useEffect, useState } from "react";
 import { Formik } from 'formik'
 import { Input } from "./Input";
-import { validationYup } from "./validation";
 import { ClassesFormConstructor, initStateFormConstructor, TypesStateFormConstructor } from "../../types/form";
 
+import style from './index.module.scss'
+const styles = style as any
+
 interface FormProps {
-   state: initStateFormConstructor,
-   classes: ClassesFormConstructor
+   validate: any
+   state: initStateFormConstructor
+   onSubmit: (values: any) => void
 }
 
-const Form: FC<FormProps> = ({ state, classes }) => {
+const Form: FC<FormProps> = ({ state, validate, onSubmit }) => {
    // touched = boolean | работали ли мы уже с этой формой
    // dirty = boolean | изменялись ли значения в форме 
    const [arrParams, setArrParams] = useState<string[]>([])
@@ -21,27 +24,23 @@ const Form: FC<FormProps> = ({ state, classes }) => {
       setArrParams(arr)
    }, [state])
 
-   function Handle(values: any) {
-      console.log(values);
-
-   }
 
    return (
       <Formik
          initialValues={state}
-         validationSchema={validationYup}
+         validationSchema={validate}
          validateOnBlur
-         onSubmit={Handle}
+         onSubmit={onSubmit}
       >
          {({ values, errors, touched, isValid, handleBlur, handleChange, handleSubmit, dirty }) => (
 
-            <form onSubmit={handleSubmit} className={classes.form} >
+            <form onSubmit={handleSubmit} className={styles.form} >
                {arrParams &&
                   arrParams.map((item) => {
 
                      return (
                         <Input
-                           classes={{ input: classes.input, error: classes.error, block: classes.blockInput }}
+                           key={item}
                            state={{ errors, handleBlur, handleChange, touched, values, dirty }}
                            value={{
                               type: item === TypesStateFormConstructor.password ? 'password' : "text",
@@ -51,7 +50,7 @@ const Form: FC<FormProps> = ({ state, classes }) => {
                      )
                   })
                }
-               <button className={classes.btn} type="submit" disabled={!isValid}>Auth</button>
+               <button className={styles.form_btn} type="submit" disabled={!isValid || !dirty}>Auth</button>
             </form>
          )}
 

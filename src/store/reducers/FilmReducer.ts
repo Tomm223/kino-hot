@@ -25,7 +25,7 @@ export function FilmReducer(state = initState, action: ActionFilmReduc) {
       case TypesFilmReduc.FILM_LOADING:
          return { ...state, loading: true }
       case TypesFilmReduc.FILM_ERROR_OPEN:
-         return { ...state, alert: action.payload }
+         return { ...state, loading: false, alert: action.payload }
       case TypesFilmReduc.FILM_ERROR_CLOSE:
          return { ...state, alert: null }
       default:

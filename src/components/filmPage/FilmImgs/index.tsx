@@ -4,6 +4,7 @@ import { useAction } from "../../../hook/useAction"
 import { useResponsive } from "../../../hook/useResponsive"
 import { useTypeSelector } from "../../../hook/useTypeSelector"
 import Carousel from "../../Carousels"
+import { AlertError } from "../../UI/Alert"
 import FilmImgItem from "../FilmImgItem"
 
 
@@ -11,6 +12,7 @@ import FilmImgItem from "../FilmImgItem"
 const FilmImgs: FC = () => {
    //imgsState const
    const imgs = useTypeSelector(state => state.filmImgs.imgs)
+   const alert = useTypeSelector(state => state.filmImgs.alert)
    const totalImg = useTypeSelector(state => state.filmImgs.total)
    //CarouselState const
    const step = useTypeSelector(state => state.imgsCarousel.step)
@@ -25,9 +27,12 @@ const FilmImgs: FC = () => {
       ActionImgsCarouselResponsive } = useAction()
 
    const { ImgCarousel_Func } = useResponsive()
+   const { ActionGalleryOpen } = useAction()
+
 
    return (
       <>
+         <AlertError alert={alert} />
          <Carousel
             total={totalImg}
             ListNode={
@@ -35,10 +40,10 @@ const FilmImgs: FC = () => {
                   style={{ right: `${offset}px` }}
                >
                   {
-                     imgs.map((item) => {
+                     imgs.map((item, i) => {
 
                         return (
-                           <FilmImgItem key={item.previewUrl} width={step - 6} src={item.previewUrl} />
+                           <FilmImgItem posArr={i} onClick={ActionGalleryOpen} key={item.previewUrl} width={step - 6} src={item.previewUrl} />
                         )
                      })
                   }
