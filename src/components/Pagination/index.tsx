@@ -25,7 +25,7 @@ const Pagination: FC<PaginationProps> = ({ page, pageCount, setSearchParams }) =
    }, [...mediaSizeArr])
 
    useEffect(() => {
-      if (page > pagesArray.length / 2 || page > pageSide && pagesArray.length) {
+      if (page > pageSide && pagesArray.length) {
          const arr = []
          for (var i = page - pageSide; i <= page + pageSide; i++) {
             if (i < pageCount) {
@@ -34,7 +34,7 @@ const Pagination: FC<PaginationProps> = ({ page, pageCount, setSearchParams }) =
          }
          setPagesArray(arr)
       }
-      else if (page <= pagesArray.length / 2) {
+      else if (page <= pageSide) {
          const arr = []
          for (var i = 1; i <= pageCount; i++) {
             if (i <= pagesAmount) {

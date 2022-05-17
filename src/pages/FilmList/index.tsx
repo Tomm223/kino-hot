@@ -8,9 +8,10 @@ import Pagination from "../../components/Pagination";
 import { LoadingFilmList } from "../../components/UI/loaders/LoadingFilmList";
 
 import style from './index.module.scss'
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { LocalStorageTypes, URLQuery } from "../../types/urlQuery";
 import { useNavigateParams } from "../../hook/useNavigateParams";
+import { FilmBase, FilmSearch } from "../../types/fetch";
 const styles = style as any
 
 const FilmList: FC = () => {
@@ -67,6 +68,12 @@ const FilmList: FC = () => {
       }
    }, [loading])
 
+   const navigate = useNavigate()
+   const location = useLocation()
+   function HandleToFilm(film: FilmBase | FilmSearch) {
+      navigate(`/film?id=${film.filmId}`, { state: location })
+   }
+
    return (
       <>
          <AlertError alert={alert} />
@@ -77,7 +84,7 @@ const FilmList: FC = () => {
                   {
                      films &&
                      films.map((film, i) => {
-                        return <FilmItem key={film.filmId} film={film} />
+                        return <FilmItem onClick={HandleToFilm} key={film.filmId} film={film} />
                      })
                   }
                </div>

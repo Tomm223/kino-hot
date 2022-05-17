@@ -1,6 +1,6 @@
 import React, { Children, FC } from "react";
 import { useTypeSelector } from "../hook/useTypeSelector";
-import { Navigate } from 'react-router-dom'
+import { Location, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { LocalStorageTypes } from "../types/urlQuery";
 interface AuthHocProps {
    children: React.ReactNode | React.ReactNode[]
@@ -10,8 +10,12 @@ interface AuthHocProps {
 const AuthHoc: FC<AuthHocProps> = ({ children }) => {
    const user = useTypeSelector(state => state.user.user)
    const userSession = sessionStorage.getItem(LocalStorageTypes.USER)
+   const location = useLocation()
+   const locState = location.state as Location
+
    if (!user && !userSession) {
-      return <Navigate to='/' state={{ modal: true }} ></Navigate>
+      return <Navigate to={locState.pathname + locState.search || '/'} state={{ modal: true }} ></Navigate>
+
    }
    return (
       <>

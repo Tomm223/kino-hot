@@ -1,8 +1,9 @@
 import { FC } from "react"
-import { useMediaQuery } from "react-responsive"
 import { useAction } from "../../../hook/useAction"
+import { useNavigateParams } from "../../../hook/useNavigateParams"
 import { useResponsive } from "../../../hook/useResponsive"
 import { useTypeSelector } from "../../../hook/useTypeSelector"
+import { FilmSimilar } from "../../../types/fetch"
 import Carousel from "../../Carousels"
 import FilmItem from "../../FilmItem"
 import { AlertError } from "../../UI/Alert"
@@ -11,7 +12,7 @@ import style from './index.module.scss'
 const styles = style as any
 
 
-const FilmSimilar: FC = () => {
+const FilmSimilarCarousel: FC = () => {
    const similar = useTypeSelector(state => state.filmsSimilar.films)
    const alert = useTypeSelector(state => state.filmsSimilar.alert)
    const total = useTypeSelector(state => state.filmsSimilar.total)
@@ -28,6 +29,11 @@ const FilmSimilar: FC = () => {
       ActionSimilarStep } = useAction()
 
    const { SimilarCarousel_Func } = useResponsive()
+   //onClick
+   const navigateParams = useNavigateParams()
+   function onClick(film: FilmSimilar) {
+      navigateParams('/film', { id: film.filmId })
+   }
 
    return (
       <>
@@ -56,7 +62,7 @@ const FilmSimilar: FC = () => {
                      similar.map((item) => {
 
                         return (
-                           <FilmItem key={item.filmId} film={item}
+                           <FilmItem onClick={onClick} key={item.filmId} film={item}
                               sizeBlock={{ padding: `0 5px` }}
                               sizeImg={{ width: `${step - 10}px`, height: `${(step - 10) * 1.5}px` }}
                            />
@@ -85,5 +91,5 @@ const FilmSimilar: FC = () => {
    )
 }
 
-export default FilmSimilar
+export default FilmSimilarCarousel
 

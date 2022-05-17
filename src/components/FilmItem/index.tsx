@@ -6,6 +6,7 @@ import style from './index.module.scss'
 const styles = style as any
 
 interface FilmsItemProps {
+   onClick: (film: any) => void,
    film: FilmBase | FilmSimilar | FilmSearch,
    sizeImg?: {
       width: string,
@@ -16,19 +17,12 @@ interface FilmsItemProps {
    }
 }
 
-const FilmItem: FC<FilmsItemProps> = ({ film, sizeImg, sizeBlock }) => {
+const FilmItem: FC<FilmsItemProps> = ({ film, sizeImg, sizeBlock, onClick }) => {
 
-   const navigateParams = useNavigateParams()
-
-
-   function handle(e: React.MouseEvent) {
-
-      navigateParams('/film', { id: film.filmId })
-   }
 
    return (
       <>
-         <div className={styles.card} onClick={handle}
+         <div className={styles.card} onClick={() => onClick(film)}
             style={sizeBlock}
          >
             <div className={styles.card__img_block}

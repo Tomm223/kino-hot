@@ -7,7 +7,7 @@ import { FilmBackground } from "../../components/styledComponents/filmPage";
 import { LoadingDefault } from "../../components/UI/loaders/LoadingDefaul";
 import { useAction } from "../../hook/useAction";
 import { useTypeSelector } from "../../hook/useTypeSelector";
-import FilmSimilar from "../../components/filmPage/FilmSimilar";
+import FilmsSimilar from "../../components/filmPage/FilmSimilar";
 import FilmImgs from "../../components/filmPage/FilmImgs";
 import { AlertError } from "../../components/UI/Alert";
 
@@ -68,7 +68,7 @@ const Film: FC = () => {
                      <FilmImgs />
                      <Gallery imgs={imgs} total={total} stepId={4} />
                      <FilmInfo film={film} />
-                     <FilmSimilar />
+                     <FilmsSimilar />
                   </div>
                }
             </div>
