@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Layout from './pages/Layout';
 import { GetTop100Films } from './Fetch';
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import FilmList from './pages/FilmList';
 import Film from './pages/Film';
 import { ThemeProvider } from 'styled-components'
@@ -9,15 +9,14 @@ import { useThemeStyled } from './hook/useThemeStyled'
 import AuthHoc from './hoc/AuthHoc';
 import { LocalStorageTypes } from './types/urlQuery';
 import { useAction } from './hook/useAction';
-import { useTypeSelector } from './hook/useTypeSelector';
+import getCookie from './hook/cookie/getCookie';
+import setCookei from './hook/cookie/setCookie';
 
 function App() {
-
   // user AUTH не знаю куда это положить и как решить проблему иначе
   const { ActionUserChange } = useAction()
-  //const user = useTypeSelector(state => state.user.user)
   useEffect(() => {
-    const userGet = sessionStorage.getItem(LocalStorageTypes.USER)
+    const userGet = getCookie(LocalStorageTypes.USER)
     if (userGet) {
       ActionUserChange(JSON.parse(userGet))
     }

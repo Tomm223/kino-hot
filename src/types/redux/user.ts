@@ -4,6 +4,7 @@ export interface User {
    password: string
 }
 export enum TypesUserReducer {
+   USER_LOADING = 'USER/LOADING',
    USER_CHANGE = 'USER/CHANGE',
    USER_OUT = 'USER/OUT',
    USER_CREATE = 'USER/CREATE',
@@ -12,6 +13,9 @@ export enum TypesUserReducer {
    USER_GET_SEASON_STORE = 'USER/GET/SEASON/STORE'
 }
 
+export interface UserLoading {
+   type: TypesUserReducer.USER_LOADING
+}
 export interface UserChange {
    type: TypesUserReducer.USER_CHANGE,
    payload: User
@@ -36,4 +40,4 @@ export interface UserErrClose {
 }
 
 export type ActionTypeUserReducer = UserChange | UserCreate |
-   UserErrOpen | UserErrClose | UserOut | UserGetSeasonStore
+   UserErrOpen | UserErrClose | UserOut | UserGetSeasonStore | UserLoading

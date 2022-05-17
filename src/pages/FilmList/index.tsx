@@ -12,6 +12,8 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { LocalStorageTypes, URLQuery } from "../../types/urlQuery";
 import { useNavigateParams } from "../../hook/useNavigateParams";
 import { FilmBase, FilmSearch } from "../../types/fetch";
+import setCookei from "../../hook/cookie/setCookie";
+import getCookie from "../../hook/cookie/getCookie";
 const styles = style as any
 
 const FilmList: FC = () => {
@@ -73,6 +75,7 @@ const FilmList: FC = () => {
    function HandleToFilm(film: FilmBase | FilmSearch) {
       navigate(`/film?id=${film.filmId}`, { state: location })
    }
+
 
    return (
       <>

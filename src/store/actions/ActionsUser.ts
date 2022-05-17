@@ -11,6 +11,9 @@ function CreateErr(this: any, str: string) {
 export function ActionUserLogin(loginState: StateFormConstructorLogin) {
    return (dispatch: Dispatch<ActionTypeUserReducer>) => {
       try {
+         dispatch({
+            type: TypesUserReducer.USER_LOADING
+         })
          const user = JSON.parse(localStorage.getItem(LocalStorageTypes.USER) || '') as User
          if (user) {
             user.email === loginState.email && user.password === loginState.password ?
