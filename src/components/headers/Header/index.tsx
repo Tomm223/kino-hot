@@ -11,6 +11,8 @@ import Auth from "../../Auth";
 import { useStore } from "react-redux";
 import { Person } from "../Persons";
 import { useTypeSelector } from "../../../hook/useTypeSelector";
+import { useMediaQuery } from "react-responsive";
+import SearchAdaptive from "../../UI/headers/searchAdaptive";
 const styles = style as any
 
 const Header: FC = () => {
@@ -39,16 +41,27 @@ const Header: FC = () => {
    // 
    const user = useTypeSelector(state => state.user.user)
    const { ActionUserOut } = useAction()
+   //responsive apadtive
+   const maxTablet = useMediaQuery({ query: '(max-width: 768px)' })
 
    return (
       <header className={styles.header}>
-         <div className={styles.header_block}>
-            <Logo func={HandleLogo} />
-            <div className={styles.search}>
-               <Search Change={HandleSearch} />
-            </div>
-            <Person user={user} UserOut={ActionUserOut} setModal={setModal} setLogin={setLogin} />
-         </div>
+         {
+            maxTablet ?
+               <div className={styles.header_block}>
+                  <SearchAdaptive />
+                  <Logo func={HandleLogo} />
+                  <Person user={user} UserOut={ActionUserOut} setModal={setModal} setLogin={setLogin} />
+               </div>
+               :
+               <div className={styles.header_block}>
+                  <Logo func={HandleLogo} />
+                  <div className={styles.search}>
+                     <Search Change={HandleSearch} />
+                  </div>
+                  <Person user={user} UserOut={ActionUserOut} setModal={setModal} setLogin={setLogin} />
+               </div>
+         }
          <Auth user={user} store={{ state: modal, setState: setModal, login, setLogin }} />
       </header>
    )

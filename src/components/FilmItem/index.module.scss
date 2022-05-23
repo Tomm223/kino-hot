@@ -1,13 +1,12 @@
 .card {
-   width: 240px;
+   width: 100%;
    height: 100%;
    position: relative;
-   margin-bottom: 1rem;
 
    &__img_block {
       position: relative;
       width: 100%;
-      height: 360px;
+      padding-bottom: 150%;
    }
 
    &__img_darken {
@@ -28,6 +27,9 @@
    }
 
    &__img_item {
+      position: absolute;
+      top: 0;
+      left: 0;
       z-index: 0;
       width: 100%;
       height: 100%;
@@ -39,12 +41,13 @@
       align-items: center;
       z-index: 2;
       position: absolute;
-      top: .5rem;
-      left: .5rem;
-      border: 3px solid #AD9945;
+      top: .5em;
+      left: .5em;
+      font-size: 1.2rem;
+      border: 0.14em solid #AD9945;
       border-radius: 50%;
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2.2em;
+      height: 2.2em;
       background-color: #a191fa;
       overflow: hidden;
       font-weight: 600;
@@ -56,10 +59,11 @@
       width: 100%;
       height: auto;
       padding: 0;
+      font-size: 1rem;
 
       &_name {
          color: #fff;
-         font-size: 18px;
+         font-size: 1.2em;
          font-weight: 500;
       }
 
@@ -71,10 +75,68 @@
       }
 
       &_genres {
-         font-size: 14px;
+         font-size: .9em;
          line-height: 18px;
          color: #AD9945;
          margin-right: .5em;
       }
+   }
+}
+
+
+@media screen and (max-width:1366px) {
+   .card__info_name {}
+
+   .card__info_genres {}
+}
+
+@media screen and (max-width:1025px) {
+   .card__info_name {
+      font-size: 1.5em;
+   }
+
+   .card__info_genres {
+      font-size: 1.2em;
+
+   }
+
+   .card__rating {
+      font-size: 2rem;
+   }
+
+   .card__rating {
+      font-size: 1.5rem;
+   }
+}
+
+@media screen and (max-width:580px) {
+   .card__info_name {
+      font-size: 2.5em;
+   }
+
+   .card__info_genres {
+      font-size: 1.9em;
+
+   }
+
+   .card__rating {
+      font-size: 3rem;
+   }
+}
+
+@media screen and (max-width:425px) {}
+
+@media screen and (max-width:325px) {
+   .card__info_name {
+      font-size: 4.5em;
+   }
+
+   .card__info_genres {
+      font-size: 3.9em;
+
+   }
+
+   .card__rating {
+      font-size: 5rem;
    }
 }

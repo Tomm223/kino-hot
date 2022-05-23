@@ -6,7 +6,50 @@
 }
 
 .list {
-   display: flex;
-   justify-content: space-around;
-   flex-wrap: wrap;
+   //display: flex;
+   //justify-content: space-around;
+   //flex-wrap: wrap;
+   display: grid;
+   gap: 2rem;
+
+}
+
+.cardContainer {
+   width: 100%;
+   padding-bottom: 170%;
+   position: relative;
+}
+
+
+@media screen and (max-width:3000px) {
+   .list {
+      grid-template-columns: repeat(4, 1fr);
+   }
+}
+
+@media screen and (max-width:1025px) {
+   .list {
+
+      grid-template-columns: repeat(3, 1fr);
+   }
+}
+
+
+@media screen and (max-width:580px) {
+   .list {
+      gap: 4rem;
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+@media screen and (max-width:425px) {
+   .list {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+@media screen and (max-width:325px) {
+   .list {
+      grid-template-columns: repeat(1, 1fr);
+   }
 }

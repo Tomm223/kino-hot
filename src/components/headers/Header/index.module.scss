@@ -1,9 +1,10 @@
 .header {
    width: 100%;
-   height: 4rem;
+   height: 4em;
    background-color: #42344A;
    position: fixed;
    z-index: 3;
+   font-size: 1rem;
 
    &_block {
       width: 100%;
@@ -46,4 +47,37 @@
 
 .search {
    width: 400px;
+}
+
+
+@media screen and (max-width:1366px) {}
+
+@media screen and (max-width:1025px) {
+   .header {
+      font-size: 1.2rem;
+   }
+}
+
+@media screen and (max-width:768px) {
+   .header {
+      font-size: 1.4rem;
+   }
+}
+
+@media screen and (max-width:580px) {
+   .header {
+      font-size: 1.6rem;
+   }
+}
+
+@media screen and (max-width:425px) {
+   .header {
+      font-size: 1.8rem;
+   }
+}
+
+@media screen and (max-width:325px) {
+   .header {
+      font-size: 2rem;
+   }
 }

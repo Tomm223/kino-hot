@@ -82,7 +82,16 @@ export function useResponsive() {
       return amount?.response || 0
    }
 
+   function buildFilmCardWidth(): number {
+      const arr = [
+         { query: minPX, response: 100 }, { query: minFon, response: 5 }, { query: minTablet, response: 4 },
+         { query: minLabTop, response: 5 }, { query: minMonitor, response: 6 },
+         { query: minBigMonitor, response: 7 }, { query: minErr, response: 0 },]
 
+      const amount = arr.find((item, i) => !arr[i + 1].query && item.query)
+
+      return amount?.response || 0
+   }
 
 
    return {

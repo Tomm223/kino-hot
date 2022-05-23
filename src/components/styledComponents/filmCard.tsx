@@ -11,7 +11,6 @@ const StyledFilmCard = styled.div`
 width: 240px;
 height:360px;
 position: relative;
-margin-bottom: 1rem;
 
 `
 interface PropsCard {

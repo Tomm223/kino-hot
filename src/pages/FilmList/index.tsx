@@ -16,6 +16,7 @@ import setCookei from "../../hook/cookie/setCookie";
 import getCookie from "../../hook/cookie/getCookie";
 const styles = style as any
 
+
 const FilmList: FC = () => {
    const films = useTypeSelector(state => state.films.films)
    const loading = useTypeSelector(state => state.films.loading)
