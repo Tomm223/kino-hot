@@ -6,7 +6,7 @@ const styles = style as any
 interface PersonProps {
    setModal: React.Dispatch<SetStateAction<boolean>>
    setLogin: React.Dispatch<SetStateAction<boolean>>
-   user: User | null
+   user: string | null
    UserOut: any
 }
 
@@ -19,7 +19,7 @@ export const Person: FC<PersonProps> = ({ user, setModal, setLogin, UserOut }) =
             <div className={styles.person_btns}>
                <div className={styles.person_btn} onClick={UserOut}>Выход</div>
                <div className={styles.person_name}>
-                  <p className={''}>{user.name}</p>
+                  <p className={''}>{user}</p>
                </div>
             </div>
             <div className={styles.person_img}>

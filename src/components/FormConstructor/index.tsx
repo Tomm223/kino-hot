@@ -11,6 +11,11 @@ interface FormProps {
    state: initStateFormConstructor
    onSubmit: (values: any) => void
 }
+interface Values {
+   email: string,
+   name?: string,
+   password: string
+}
 
 const Form: FC<FormProps> = ({ state, validate, onSubmit }) => {
    // touched = boolean | работали ли мы уже с этой формой
@@ -50,7 +55,7 @@ const Form: FC<FormProps> = ({ state, validate, onSubmit }) => {
                      )
                   })
                }
-               <button className={styles.form_btn} type="submit" disabled={!isValid || !dirty}>Auth</button>
+               <button className={styles.form_btn} type="submit" disabled={!dirty}>Auth</button>
             </form>
          )}
 

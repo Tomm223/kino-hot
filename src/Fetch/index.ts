@@ -1,6 +1,10 @@
 import React from "react";
 import axios from 'axios'
 import { FilmFull, GetFilmsType, PromiseFilmImgs, PromiseFilmsSearch, PromiseFilmsSimilar, PromiseFilmVideo, PromiseGetFilms } from "../types/fetch";
+import { SingInUser } from "../types/redux/user";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+
+
 
 export async function GetTop100Films(pageNum: number = 1): Promise<PromiseGetFilms> {
    const resp = await axios.get(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${pageNum}`, {
@@ -74,6 +78,8 @@ export async function SearchFilms(str: string, page: number = 1): Promise<Promis
       pagesCount: resp.data.pagesCount
    }
 }
+
+
 
 
 

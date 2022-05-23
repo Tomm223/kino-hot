@@ -2,6 +2,8 @@ import { Dispatch } from "react";
 import { StateFormConstructorLogin } from "../../types/form";
 import { LocalStorageTypes } from "../../types/urlQuery";
 import { ActionTypeUserReducer, TypesUserReducer, User, UserChange, UserCreate, UserOut } from "../../types/redux/user";
+import { string } from "yup";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 function CreateErr(this: any, str: string) {
    this.message = 'не число'
@@ -9,56 +11,83 @@ function CreateErr(this: any, str: string) {
 }
 
 export function ActionUserLogin(loginState: StateFormConstructorLogin) {
-   return (dispatch: Dispatch<ActionTypeUserReducer>) => {
-      try {
-         dispatch({
-            type: TypesUserReducer.USER_LOADING
+   return async (dispatch: Dispatch<ActionTypeUserReducer>) => {
+      dispatch({
+         type: TypesUserReducer.USER_LOADING
+      })
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, loginState.email, loginState.password)
+         .then(async (userCredential) => {
+            const user = userCredential.user;
+            const token = await user.getIdToken()
+            dispatch({
+               type: TypesUserReducer.USER_CHANGE,
+               payload: user.email || '',
+               token: token
+            })
          })
-         const user = JSON.parse(localStorage.getItem(LocalStorageTypes.USER) || '') as User
-         if (user) {
-            user.email === loginState.email && user.password === loginState.password ?
-               dispatch({
-                  type: TypesUserReducer.USER_CHANGE,
-                  payload: user
-               })
-               :
-               dispatch({
-                  type: TypesUserReducer.USER_ERROR_OPEN,
-                  payload: 'Неверный Email или пароль.'
-               })
+         .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            dispatch({
+               type: TypesUserReducer.USER_ERROR_OPEN,
+               payload: errorCode + errorMessage
+            })
             setTimeout(() => {
                dispatch({
                   type: TypesUserReducer.USER_ERROR_CLOSE
                })
-            }, 3000)
-            //Error('Неверный Email или пароль')
+            }, 4000)
+         });
 
-         }
-         else {
-            throw ''
-         }
+   }
+}
 
-      }
-      catch (e) {
-         dispatch({
-            type: TypesUserReducer.USER_ERROR_OPEN,
-            payload: "Этот Email не был зарегестрирован, пожалуйста, зарегестрируйтесь."
-         })
-         setTimeout(() => {
+
+
+export function ActionUserCreate(loginState: StateFormConstructorLogin) {
+   return async (dispatch: Dispatch<ActionTypeUserReducer>) => {
+      dispatch({
+         type: TypesUserReducer.USER_LOADING
+      })
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, loginState.email, loginState.password)
+         .then(async (userCredential) => {
+            const user = userCredential.user;
+            const token = await user.getIdToken()
+            console.log(user);
+
             dispatch({
-               type: TypesUserReducer.USER_ERROR_CLOSE
+               type: TypesUserReducer.USER_CHANGE,
+               payload: user.email || '',
+               token: token
             })
-         }, 3000)
-      }
+         })
+         .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            dispatch({
+               type: TypesUserReducer.USER_ERROR_OPEN,
+               payload: errorCode + errorMessage
+            })
+            setTimeout(() => {
+               dispatch({
+                  type: TypesUserReducer.USER_ERROR_CLOSE
+               })
+            }, 4000)
+         });
+
    }
 }
-export function ActionUserChange(user: User): UserChange {
+
+export function ActionUserChange(user: string): UserCreate {
    return {
-      type: TypesUserReducer.USER_CHANGE,
-      payload: user
+      type: TypesUserReducer.USER_CREATE,
+      payload: user,
+
    }
 }
-function Error(str: string) {
+export function ActionUserError(str: string) {
    return (dispatch: Dispatch<ActionTypeUserReducer>) => {
       dispatch({
          type: TypesUserReducer.USER_ERROR_OPEN,
@@ -71,14 +100,8 @@ function Error(str: string) {
       }, 3000)
    }
 }
-export function ActionUserOut(user: null): UserOut {
+export function ActionUserOut(): UserOut {
    return {
       type: TypesUserReducer.USER_OUT,
-   }
-}
-export function ActionUserCreate(user: User): UserCreate {
-   return {
-      type: TypesUserReducer.USER_CREATE,
-      payload: user
    }
 }

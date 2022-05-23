@@ -8,6 +8,7 @@ import { useAction } from "../../hook/useAction";
 import { useTypeSelector } from "../../hook/useTypeSelector";
 import { AlertError } from "../UI/Alert";
 import { LocalStorageTypes } from "../../types/urlQuery";
+import { InLogin } from "../FormConstructor/type";
 const styles = style as any
 
 interface AuthProps {
@@ -17,7 +18,7 @@ interface AuthProps {
       login: boolean,
       setLogin: React.Dispatch<SetStateAction<boolean>>,
    }
-   user: User | null
+   user: string | null
 }
 
 const Auth: FC<AuthProps> = ({ store, user }) => {
@@ -37,17 +38,10 @@ const Auth: FC<AuthProps> = ({ store, user }) => {
          setLogin(true)
       }
    }
-   const registrate: initStateFormConstructor = {
-      name: '',
-      email: '',
-      password: ''
-   }
-   const InLogin: initStateFormConstructor = {
-      email: '',
-      password: ''
-   }
+
    const alert = useTypeSelector(state => state.user.error)
    const { ActionUserLogin, ActionUserCreate } = useAction()
+
 
    if (user) {
       setTimeout(() => {
@@ -78,7 +72,7 @@ const Auth: FC<AuthProps> = ({ store, user }) => {
                   ?
                   <Form state={InLogin} validate={validationYupLogin} onSubmit={ActionUserLogin} />
                   :
-                  <Form state={registrate} validate={validationYupRegistration} onSubmit={ActionUserCreate} />
+                  <Form state={InLogin} validate={validationYupLogin} onSubmit={ActionUserCreate} />
                }
 
                <div ref={closeDIV} className={styles.modal_close}>

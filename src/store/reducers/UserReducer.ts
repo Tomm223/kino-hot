@@ -1,7 +1,7 @@
 import { ActionTypeUserReducer, TypesUserReducer, User } from "../../types/redux/user"
 
 interface userReducerState {
-   user: User | null
+   user: string | null
    error: null | string,
    loading: boolean
 }
@@ -22,8 +22,6 @@ export function userReducer(state = initState, action: ActionTypeUserReducer) {
          return { ...state, loading: false, user: action.payload }
       case TypesUserReducer.USER_OUT:
          return { ...state, user: null }
-      case TypesUserReducer.USER_GET_SEASON_STORE:
-         return { ...state, user: action.payload }
       case TypesUserReducer.USER_ERROR_OPEN:
          return { ...state, loading: false, error: action.payload }
       case TypesUserReducer.USER_ERROR_CLOSE:

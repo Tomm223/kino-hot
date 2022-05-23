@@ -9,11 +9,10 @@ interface AuthHocProps {
 
 const AuthHoc: FC<AuthHocProps> = ({ children }) => {
    const user = useTypeSelector(state => state.user.user)
-   const userSession = sessionStorage.getItem(LocalStorageTypes.USER)
    const location = useLocation()
    const locState = location.state as Location
 
-   if (!user && !userSession) {
+   if (!user) {
       return <Navigate to={locState.pathname + locState.search || '/'} state={{ modal: true }} ></Navigate>
 
    }
@@ -27,3 +26,5 @@ const AuthHoc: FC<AuthHocProps> = ({ children }) => {
 }
 
 export default AuthHoc
+
+

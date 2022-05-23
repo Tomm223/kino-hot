@@ -12,18 +12,15 @@ const userOut = TypesUserReducer.USER_OUT
 
 export const putStorages = (store) => (next) => (action) => {
 
-   if (action.type === userCreate) {
-      localStorage.setItem(userURl, JSON.stringify(action.payload))
-      sessionStorage.setItem(userURl, JSON.stringify(action.payload))
-      setCookei('/', userURl, JSON.stringify(action.payload))
+   if (action.token) {
+      setCookei('/', userURl, JSON.stringify({
+         email: action.payload,
+         token: action.token
+      }))
    }
-   else if (action.type === userChange) {
-      setCookei('/', userURl, JSON.stringify(action.payload))
-      sessionStorage.setItem(userURl, JSON.stringify(action.payload))
-   }
+
    else if (action.type === userOut) {
       removeCookie(userURl)
-      sessionStorage.removeItem(userURl)
    }
    return next(action)
 }

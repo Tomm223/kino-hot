@@ -10,7 +10,6 @@ import AuthHoc from './hoc/AuthHoc';
 import { LocalStorageTypes } from './types/urlQuery';
 import { useAction } from './hook/useAction';
 import getCookie from './hook/cookie/getCookie';
-import setCookei from './hook/cookie/setCookie';
 
 function App() {
   // user AUTH не знаю куда это положить и как решить проблему иначе
@@ -18,7 +17,8 @@ function App() {
   useEffect(() => {
     const userGet = getCookie(LocalStorageTypes.USER)
     if (userGet) {
-      ActionUserChange(JSON.parse(userGet))
+      const email = JSON.parse(userGet)
+      ActionUserChange(email.email)
     }
   }, [])
 
