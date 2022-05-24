@@ -52,3 +52,65 @@ function App() {
 }
 
 export default App;
+
+
+
+/*
+
+
+ {
+            test: /\.module\.s(a|c)ss$/,
+            use: [
+               isDevelopment ?
+                  'style-loader' :
+                  MiniCssExtractPlugin.loader,
+               {
+                  loader: 'css-loader',
+                  options: {
+                     modules: {
+                        mode: 'local',
+                        localIdentName: '[local]--[hash:base64:5]'
+                     },
+                     sourceMap: isDevelopment
+                  }
+               },
+
+               {
+                  loader: 'sass-loader',
+                  options: {
+                     module: true,
+                     sourceMap: isDevelopment
+                  }
+               }
+
+            ]
+         },
+         {
+            test: /\.s(a|c)ss$/,
+            use: [
+               isDevelopment ?
+                  'style-loader' :
+                  MiniCssExtractPlugin.loader,
+               {
+                  loader: 'css-loader',
+                  options: {
+                     modules: {
+                        mode: 'local',
+                        localIdentName: '[local]--[hash:base64:5]'
+                     },
+                     sourceMap: isDevelopment
+                  }
+               },
+               {
+                  loader: 'sass-loader',
+                  options: {
+                     sourceMap: isDevelopment
+                  }
+               }
+
+
+            ]
+         },
+
+
+*/
